@@ -1,0 +1,14 @@
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy Football API.csproj.AssemblyReference.cache
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy Football API.csproj.SuggestedBindingRedirects.cache
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy_Football_API.Form1.resources
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy_Football_API.Properties.Resources.resources
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy Football API.csproj.GenerateResource.cache
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy Football API.csproj.CoreCompileInputs.cache
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\bin\Debug\Fantasy Football API.exe.config
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\bin\Debug\Fantasy Football API.exe
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\bin\Debug\Fantasy Football API.pdb
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy Football API.exe
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy Football API.pdb
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Fredd\Documents\Coding\Visual Studio\Fantasy Football API\Fantasy Football API\obj\Debug\Fantasy Football API.csproj.CopyComplete
