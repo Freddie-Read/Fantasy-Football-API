@@ -85,8 +85,195 @@ namespace Fantasy_Football_API
 
         private void sortBtn_Click(object sender, EventArgs e)
         {
+            createSquad();
+            //createBestSquad();
+            //TextBox sortTermTxt = sortTxt;
+            //TextBox displayText = displayTxt;
+
+            //displayText.Text = "";
+            //string sortTerm = sortTermTxt.Text;
+
+            //sortTerm = char.ToUpper(sortTerm[0]) + sortTerm.Substring(1).ToLower();
+
+            //SortingTerms term;
+
+            //if (!Enum.TryParse(sortTerm, out term))
+            //{
+            //    displayText.Text = "Cannot sort by this value";
+            //    return;
+            //}
+
+            //PlayerCollection sortedPlayers = playerCollection.sortPlayers(term);
+            //createBestSquad(sortedPlayers);
+            ////createSquad(sortedPlayers, term);
+
+            //return;
+        }
+
+        private void createSquad()
+        {
+            int[] currLineup = { 0, 0, 0, 0 };
+            int[] fourThreeThree = { 1, 4, 3, 3 };
+            int[] lineup = { 2, 5, 5, 3 };
+            int poolSize = 60;
+
+            SortingTerms[] terms = { SortingTerms.TotalPoints, SortingTerms.Form/*, SortingTerms.Bonus*/ };
+            PlayerCollection playerList = playerCollection;
+
+            Dictionary<Player, int[]> frequency = new Dictionary<Player, int[]>();
+
+            TextBox displayErrors = suggestionTxt;
+            displayErrors.Text = "";
+            var newLine = Environment.NewLine;
+
+            TextBox displayText = displayTxt;
+            displayText.Text = "";
+
+            playerList.sortPlayers(SortingTerms.TotalPoints);
+            foreach (var player in playerList.getPlayerList())
+            {
+                displayText.Text += $"{player.getTotalPoints},{player.getForm}{newLine}";
+            }
+            return;
+            //foreach (var term in terms)
+            //{
+            //    playerList.sortPlayers(term);
+            //    for (int j = 0; j < poolSize; j++)
+            //    {
+            //        if (frequency.ContainsKey(playerList.getPlayer(j)))
+            //        {
+            //            frequency[playerList.getPlayer(j)][0] += 1;
+            //            frequency[playerList.getPlayer(j)][1] += j;
+            //        }
+            //        else
+            //        {
+            //            frequency[playerList.getPlayer(j)] = new int[] { 1, j }; //{ frequency, rank }
+            //        }
+            //    }
+            //}
+
+            //Dictionary<Player, int> rankedDictionary = new Dictionary<Player, int>();
+
+            //foreach (KeyValuePair<Player, int[]> element in frequency)
+            //{
+            //    if (element.Value[0] == terms.Length)
+            //    {
+            //        rankedDictionary[element.Key] = element.Value[1];
+            //    }
+            //}
+
+            //List<Player> unsortedPlayerList = rankedDictionary.Keys.ToList();
+
+            //for (int i = 0; i < unsortedPlayerList.Count - 2; i++)
+            //{
+            //    for (int j = 0; j < unsortedPlayerList.Count - 1 - i; j++)
+            //    {
+            //        if (rankedDictionary[unsortedPlayerList[j]] > rankedDictionary[unsortedPlayerList[j + 1]])
+            //        {
+            //            Player temp = unsortedPlayerList[j];
+            //            unsortedPlayerList[j] = unsortedPlayerList[j + 1];
+            //            unsortedPlayerList[j + 1] = temp;
+            //        }
+            //    }
+            //}
+
+            //TextBox displayText = displayTxt;
+            //displayText.Text = "";
+            ////int index = 0;
+
+            ////foreach (var player in unsortedPlayerList)
+            ////{
+            ////    index++;
+            ////    displayText.Text += $"({index}) {player.getFirstName} {player.getLastName}: {rankedDictionary[player]}{newLine}";
+            ////}
+
+            //float totalCost = 0.0f;
+            //int index = 0;
+            //foreach (var player in unsortedPlayerList)
+            //{
+            //    int postion = (int)player.getPosition - 1;
+            //    if (currLineup[postion] == lineup[postion])
+            //    {
+            //        continue;
+            //    }
+
+            //    totalCost += player.getCost / 10;
+            //    if (totalCost > 100)
+            //    {
+            //        totalCost -= player.getCost / 10;
+            //        continue;
+            //    }
+
+            //    displayText.Text += $"({index}) {player.getFirstName} {player.getLastName}: £{player.getCost / 10}" +
+            //        $" - ({player.getPosition}){newLine}";
+            //    currLineup[postion]++;
+            //    index++;
+            //}
+
+            //displayText.Text += $"Total Cost: £{totalCost}";
+        }
+
+        private void createBestSquad()
+        {
+            PlayerCollection sortedPlayers = playerCollection;
+            SortingTerms[] terms = { SortingTerms.TotalPoints, SortingTerms.Form};
+
+            int termAmount = terms.Length;
+
+            int[] lineup = { 2, 5, 5, 3 };
+            int poolSize = 50;
+
+            Dictionary<Player, int> eligiblePlayers = new Dictionary<Player, int>();
+            for (int i = 0; i < terms.Length; i++)
+            {
+                sortedPlayers.sortPlayers(terms[i]);
+                for (int j = 0; j < poolSize; j++)
+                {
+                    if (eligiblePlayers.ContainsKey(sortedPlayers.getPlayer(j)))
+                    {
+                        eligiblePlayers[sortedPlayers.getPlayer(j)]++;
+                    }
+                    else
+                    {
+                        eligiblePlayers[sortedPlayers.getPlayer(j)] = 1;
+                    }
+                }
+            }
+
+            List<Player> eligiblePlayersList = new List<Player>();
+
+            foreach (KeyValuePair<Player, int> element in eligiblePlayers)
+            {
+                if (element.Value == terms.Length)
+                {
+                    eligiblePlayersList.Add(element.Key);
+                }
+            }
+
+            PlayerCollection playerShortlist = new PlayerCollection(eligiblePlayersList);
+
+            Dictionary<Player, int> validPlayers2 = new Dictionary<Player, int>();
+            for (int i = 0; i < poolSize; i++)
+            {
+                if (!validPlayers2.ContainsKey(playerShortlist.getPlayer(i)))
+                {
+                    foreach (var player in playerShortlist.getPlayerList())
+                    {
+
+                        //validPlayers2[player] = ;
+                    }
+                }
+            }
+        }
+
+        private void sortFirstBtn_Click(object sender, EventArgs e)
+        {
             TextBox sortTermTxt = sortTxt;
             TextBox displayText = displayTxt;
+
+            int[] fourFourTwo = { 1, 4, 4, 2 };
+            int[] fourThreeThree = { 1, 4, 3, 3 };
+            int[] threeFourThree = { 1, 4, 4, 2 };
 
             displayText.Text = "";
             string sortTerm = sortTermTxt.Text;
@@ -102,12 +289,12 @@ namespace Fantasy_Football_API
             }
 
             PlayerCollection sortedPlayers = playerCollection.sortPlayers(term);
-            createSquad(sortedPlayers, term);
+            firstTeamOnly(sortedPlayers, fourThreeThree, term);
 
             return;
         }
 
-        private void createSquad(PlayerCollection sortedPlayers, SortingTerms term)
+        /*private void createSquad(PlayerCollection sortedPlayers, SortingTerms term)
         {
             TextBox displayText = displayTxt;
             int[] lineup = { 2, 5, 5, 3 };
@@ -174,7 +361,79 @@ namespace Fantasy_Football_API
             }
 
             displayText.Text += $"{Environment.NewLine}Team Cost: £{totalCost / 10}";
+        }*/
+
+        private void firstTeamOnly(PlayerCollection sortedPlayers, int[] formation, SortingTerms term)
+        {
+            TextBox displayText = displayTxt;
+            int[] currLineup = { 0, 0, 0, 0 };
+            int[] fourThreeThree = { 1, 4, 3, 3 };
+            TextBox suggestionText = suggestionTxt;
+
+            float totalCost = 0.0f;
+
+            foreach (var player in sortedPlayers.playerList)
+            {
+                int postion = (int)player.getPosition - 1;
+                if (currLineup[postion] == fourThreeThree[postion])
+                {
+                    suggestionText.Text += $"Rejected: {player.getLastName}{Environment.NewLine}";
+                    continue;
+                }
+
+                totalCost += player.getCost;
+
+                displayText.Text += $"[{Environment.NewLine}\tName: {player.getFirstName} {player.getLastName} ({player.getPosition})" +
+                    $"{Environment.NewLine}\tPlays For: {player.getTeam}{Environment.NewLine}";
+
+                switch ((int)term)
+                {
+                    case 0:
+                        displayText.Text += $"\tTotal Points: {player.getTotalPoints}{Environment.NewLine}]";
+                        break;
+                    case 1:
+                        displayText.Text += $"\tForm: {player.getForm}{Environment.NewLine}]";
+                        break;
+                    case 2:
+                        displayText.Text += $"\tCost: {player.getCost}{Environment.NewLine}]";
+                        break;
+                    case 3:
+                        displayText.Text += $"\tSelected Percent (%): {player.getSelectedPercent}{Environment.NewLine}]";
+                        break;
+                    case 4:
+                        displayText.Text += $"\tTotal Minutes: {player.getMinutes}{Environment.NewLine}]";
+                        break;
+                    case 5:
+                        displayText.Text += $"\tGoals: {player.getGoals}{Environment.NewLine}]";
+                        break;
+                    case 6:
+                        displayText.Text += $"\tAssists: {player.getAssists}{Environment.NewLine}]";
+                        break;
+                    case 7:
+                        displayText.Text += $"\tClean Sheets: {player.getCleanSheets}{Environment.NewLine}]";
+                        break;
+                    case 8:
+                        displayText.Text += $"\tBonus Points: {player.getBonus}{Environment.NewLine}]";
+                        break;
+                    case 9:
+                        displayText.Text += $"\tYellow Cards: {player.getYellowCards}{Environment.NewLine}]";
+                        break;
+                    case 10:
+                        displayText.Text += $"\tRed Cards: {player.getRedCards}{Environment.NewLine}]";
+                        break;
+                    default:
+                        displayText.Text += $"\tTotal Points: {player.getTotalPoints}{Environment.NewLine}]";
+                        break;
+                }
+
+                displayText.Text += Environment.NewLine;
+
+                currLineup[postion]++;
+            }
+
+            displayText.Text += $"{Environment.NewLine}Team Cost: £{totalCost / 10}";
         }
+
     }
 
     public enum Team
@@ -226,12 +485,9 @@ namespace Fantasy_Football_API
 
     public class PlayerCollection
     {
-        public List<Player> playerList { get; set; }
+        public List<Player> playerList;
 
-        public PlayerCollection()
-        {
-
-        }
+        public PlayerCollection(){}
 
         public PlayerCollection(List<Player> playerList)
         {
@@ -307,6 +563,16 @@ namespace Fantasy_Football_API
         public Player getPlayer(int index)
         {
             return playerList[index];
+        }
+
+        public List<Player> getPlayerList()
+        {
+            return playerList;
+        }
+
+        public int getPlayerCount()
+        {
+            return playerList.Count;
         }
 
         public override bool Equals(object obj)

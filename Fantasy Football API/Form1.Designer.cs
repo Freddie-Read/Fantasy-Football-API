@@ -32,6 +32,8 @@
             this.displayTxt = new System.Windows.Forms.TextBox();
             this.sortBtn = new System.Windows.Forms.Button();
             this.sortTxt = new System.Windows.Forms.TextBox();
+            this.sortFirstBtn = new System.Windows.Forms.Button();
+            this.suggestionTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // callAPIBtn
@@ -71,11 +73,33 @@
             this.sortTxt.Size = new System.Drawing.Size(287, 20);
             this.sortTxt.TabIndex = 3;
             // 
+            // sortFirstBtn
+            // 
+            this.sortFirstBtn.Location = new System.Drawing.Point(12, 222);
+            this.sortFirstBtn.Name = "sortFirstBtn";
+            this.sortFirstBtn.Size = new System.Drawing.Size(287, 86);
+            this.sortFirstBtn.TabIndex = 4;
+            this.sortFirstBtn.Text = "Sort First Team";
+            this.sortFirstBtn.UseVisualStyleBackColor = true;
+            this.sortFirstBtn.Click += new System.EventHandler(this.sortFirstBtn_Click);
+            // 
+            // suggestionTxt
+            // 
+            this.suggestionTxt.Location = new System.Drawing.Point(12, 314);
+            this.suggestionTxt.Multiline = true;
+            this.suggestionTxt.Name = "suggestionTxt";
+            this.suggestionTxt.ReadOnly = true;
+            this.suggestionTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.suggestionTxt.Size = new System.Drawing.Size(287, 462);
+            this.suggestionTxt.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 788);
+            this.Controls.Add(this.suggestionTxt);
+            this.Controls.Add(this.sortFirstBtn);
             this.Controls.Add(this.sortTxt);
             this.Controls.Add(this.sortBtn);
             this.Controls.Add(this.displayTxt);
@@ -93,6 +117,8 @@
         private System.Windows.Forms.TextBox displayTxt;
         private System.Windows.Forms.Button sortBtn;
         private System.Windows.Forms.TextBox sortTxt;
+        private System.Windows.Forms.Button sortFirstBtn;
+        private System.Windows.Forms.TextBox suggestionTxt;
     }
 }
 
